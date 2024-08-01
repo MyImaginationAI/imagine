@@ -536,6 +536,7 @@ pyrightconfig.json
 ### Terraform ###
 # Local .terraform directories
 **/.terraform/*
+*.plan
 
 # .tfstate files
 *.tfstate
