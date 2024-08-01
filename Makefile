@@ -8,7 +8,7 @@ export IMAGINE_INFRA_DIR = $(IMAGINE)/infra
 -include $(IMAGINE_MAKE_LIBS)/*.mk
 
 # -include .env
-# -include .env.secrets
+-include $(IMAGINE)/.env.secrets
 
 ifneq ($(shell which docker-compose 2>/dev/null),)
     DOCKER_COMPOSE := docker-compose
