@@ -17,7 +17,7 @@ variable "ipv4_primary_cidr_block" {
     The primary IPv4 CIDR block for the VPC.
     Either `ipv4_primary_cidr_block` or `ipv4_primary_cidr_block_association` must be set, but not both.
     EOT
-  default     = null
+  default     = "172.16.0.0/16"
 }
 
 variable "ipv4_primary_cidr_block_association" {
