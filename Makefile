@@ -1,3 +1,14 @@
+export WORKSPACE=$(shell pwd)
+
+export IMAGINE=$(WORKSPACE)/imagine
+export IMAGINE_LIBS=$(IMAGINE)/libs
+export IMAGINE_MAKE_LIBS=$(IMAGINE_LIBS)/make
+export IMAGINE_INFRA_DIR = $(IMAGINE)/infra
+
+-include $(IMAGINE_MAKE_LIBS)/*.mk
+
+# -include .env
+# -include .env.secrets
 
 ifneq ($(shell which docker-compose 2>/dev/null),)
     DOCKER_COMPOSE := docker-compose
