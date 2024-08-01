@@ -3,7 +3,12 @@ export WORKSPACE=$(shell pwd)
 export IMAGINE=$(WORKSPACE)/imagine
 export IMAGINE_LIBS=$(IMAGINE)/libs
 export IMAGINE_MAKE_LIBS=$(IMAGINE_LIBS)/make
+
+export IMAGINE_AWS_MAKE_LIBS=$(IMAGINE_MAKE_LIBS)/aws
+
 export IMAGINE_INFRA_DIR = $(IMAGINE)/infra
+export IMAGINE_INFRA_TERRAFORM_DIR = $(IMAGINE)/infra/terraform
+export IMAGINE_INFRA_PACKER_DIR = $(IMAGINE)/infra/packer
 
 -include $(IMAGINE_MAKE_LIBS)/*.mk
 
