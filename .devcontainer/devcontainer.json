@@ -23,7 +23,10 @@
 				"AndrewButson.vscode-openai",
 				"ms-python.vscode-pylance",
 				"ms-python.python",
-				"ms-python.debugpy"
+				"ms-python.debugpy",
+				"GitHub.vscode-pull-request-github",
+				"GitHub.github-vscode-theme",
+				"PKief.material-icon-theme"
 			]
 		}
 	}
