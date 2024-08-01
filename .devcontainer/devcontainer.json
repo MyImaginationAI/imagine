@@ -1,0 +1,30 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "Imagine",
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	"features": {
+		"ghcr.io/devcontainers/features/aws-cli:1": {},
+		"ghcr.io/devcontainers/features/terraform:1": {},
+		"ghcr.io/devcontainers-contrib/features/terraform-docs:1": {},
+		"ghcr.io/devcontainers-contrib/features/terraform-ls-asdf:2": {},
+		"ghcr.io/devcontainers-contrib/features/tfswitch:1": {},
+		"ghcr.io/devcontainers-contrib/features/packer-asdf": {}
+	},
+	"postCreateCommand": "make imagine/devcontainer/create",
+	"postStartCommand": "make imagine/devcontainer/start",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"eamodio.gitlens",
+				"donjayamanne.githistory",
+				"hashicorp.terraform",
+				"usernamehw.errorlens",
+				"AndrewButson.vscode-openai",
+				"ms-python.vscode-pylance",
+				"ms-python.python",
+				"ms-python.debugpy"
+			]
+		}
+	}
+}
