@@ -11,11 +11,11 @@ imagine/infra/validate:
 
 .PHONY: imagine/infra/plan
 imagine/infra/plan:
-	@cd $(IMAGINE_INFRA_DIR) && terraform plan
+	@cd $(IMAGINE_INFRA_DIR) && terraform plan -out terraform.plan
 
 .PHONY: imagine/infra/apply
 imagine/infra/apply:
-	@cd $(IMAGINE_INFRA_DIR) && terraform apply -auto-approve
+	@cd $(IMAGINE_INFRA_DIR) && terraform apply "terraform.plan"
 
 .PHONY: imagine/infra/destroy
 imagine/infra/destroy:
