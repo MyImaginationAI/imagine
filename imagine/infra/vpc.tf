@@ -3,7 +3,7 @@ module "vpc" {
   source  = "cloudposse/vpc/aws"
   version = "2.1.1"
 
-  ipv4_primary_cidr_block = "172.16.0.0/16"
+  ipv4_primary_cidr_block = var.ipv4_primary_cidr_block
   ipv4_cidr_block_association_timeouts = {
     create = "3m"
     delete = "5m"
@@ -32,15 +32,3 @@ module "subnets" {
   context = module.label.context
 }
 
-# Verify that a disabled VPC generates a plan without errors
-module "vpc_disabled" {
-  source  = "cloudposse/vpc/aws"
-  version = "2.1.1"
-
-  enabled = false
-
-  ipv4_primary_cidr_block          = "172.16.0.0/16"
-  assign_generated_ipv6_cidr_block = true
-
-  context = module.label.context
-}
