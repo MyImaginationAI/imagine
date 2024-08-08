@@ -29,7 +29,8 @@
 				"ms-python.python",
 				"ms-python.vscode-pylance",
 				"PKief.material-icon-theme",
-				"usernamehw.errorlens"
+				"usernamehw.errorlens",
+				"HashiCorp.HCL"
 			]
 		}
 	}
