@@ -13,7 +13,7 @@ export IMAGINE_INFRA_PACKER_DIR = $(IMAGINE)/infra/packer
 -include $(IMAGINE_MAKE_LIBS)/*.mk
 
 # -include .env
--include $(IMAGINE)/.env.secrets
+-include $(WORKSPACE)/.env.secrets
 
 ifneq ($(shell which docker-compose 2>/dev/null),)
     DOCKER_COMPOSE := docker-compose
