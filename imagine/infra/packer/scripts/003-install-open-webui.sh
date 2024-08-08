@@ -50,8 +50,8 @@ setup_frontend() {
 setup_backend() {
     log "Setting up backend..."
     cd "$1/backend"
-    # conda create --name open-webui-env python=3.11 -y
-    # conda activate open-webui-env
+    conda create --name open-webui-env python=3.11 -y
+    conda activate open-webui-env
     pip install -r requirements.txt -U
     # bash dev.sh & # TODO: perhaps this needs to run after the baking?
     log "Backend setup completed."
