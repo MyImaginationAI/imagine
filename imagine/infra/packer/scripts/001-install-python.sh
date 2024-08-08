@@ -7,7 +7,7 @@
 set -euo pipefail
 
 # Variables
-PYTHON_VERSION="3.12"
+PYTHON_VERSION="3.11"
 
 # Functions
 log() {
