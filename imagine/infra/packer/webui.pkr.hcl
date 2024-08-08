@@ -28,6 +28,13 @@ source "amazon-ebs" "ubuntu" {
   # comment the line below when ready to bake the image
   skip_create_ami = true
 
+  launch_block_device_mappings {
+    device_name           = "/dev/sda1"
+    volume_size           = 32
+    volume_type           = "gp3"
+    delete_on_termination = true
+  }
+
 }
 
 build {
