@@ -34,21 +34,26 @@ clone_repository() {
 }
 
 setup_frontend() {
+    # Source NVM to make it available in the current session
+    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
     log "Setting up frontend..."
     cd "$1"
     cp -RPp .env.example .env
     npm install
-    npm run dev &
+    # npm run dev & # TODO: perhaps this needs to run after the baking?
     log "Frontend setup completed."
 }
 
 setup_backend() {
     log "Setting up backend..."
     cd "$1/backend"
-    conda create --name open-webui-env python=3.11 -y
-    conda activate open-webui-env
+    # conda create --name open-webui-env python=3.11 -y
+    # conda activate open-webui-env
     pip install -r requirements.txt -U
-    bash dev.sh &
+    # bash dev.sh & # TODO: perhaps this needs to run after the baking?
     log "Backend setup completed."
 }
 
