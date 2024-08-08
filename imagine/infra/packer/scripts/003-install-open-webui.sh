@@ -33,6 +33,17 @@ clone_repository() {
     log "Repository cloned successfully."
 }
 
+install_conda() {
+    local conda_installer="Anaconda3-2024.06-1-Linux-x86_64.sh"
+    log "Downloading Anaconda installer..."
+    wget -q "https://repo.anaconda.com/archive/$conda_installer"
+    log "Installing Anaconda..."
+    bash "$conda_installer" -b -p "$HOME/anaconda3"
+    rm "$conda_installer"
+    export PATH="$HOME/anaconda3/bin:$PATH"
+    log "Anaconda installed successfully."
+}
+
 setup_frontend() {
     # Source NVM to make it available in the current session
     export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -50,8 +61,11 @@ setup_frontend() {
 setup_backend() {
     log "Setting up backend..."
     cd "$1/backend"
+    log "Creating Conda environment..."
     conda create --name open-webui-env python=3.11 -y
-    conda activate open-webui-env
+    log "Activating Conda environment..."
+    source activate open-webui-env
+    log "Installing backend dependencies..."
     pip install -r requirements.txt -U
     # bash dev.sh & # TODO: perhaps this needs to run after the baking?
     log "Backend setup completed."
@@ -72,6 +86,9 @@ create_directory "$INSTALL_DIR"
 # Clone the repository
 REPO_URL="https://github.com/open-webui/open-webui.git"
 clone_repository "$REPO_URL" "$INSTALL_DIR"
+
+# Install Conda
+install_conda
 
 # Setup frontend
 setup_frontend "$INSTALL_DIR"
