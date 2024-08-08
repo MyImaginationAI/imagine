@@ -38,12 +38,8 @@ build {
     execute_command = "echo 'packer' | sudo -S -E bash '{{ .Path }}'"
   }
      
-  // provisioner "shell" {
-  //   script = "scripts/001-common-packages.sh"
-  // }
-
   provisioner "shell" {
-    script = "scripts/002-install-python.sh"
+    script = "scripts/001-install-python.sh"
     execute_command = "echo 'packer' | sudo -S -E bash '{{ .Path }}'"
   }
   
