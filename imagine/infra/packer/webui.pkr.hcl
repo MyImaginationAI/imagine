@@ -9,11 +9,11 @@ packer {
 
 source "amazon-ebs" "ubuntu" {
   ami_name      = "proserve-ue1-webui"
-  instance_type = "t2.micro"
+  instance_type = "m5.large"
   region        = "us-east-1"
 
-  vpc_id        = "vpc-099940443fbe6b12c"
-  subnet_id     = "subnet-0b757577209988916"
+  vpc_id        = "vpc-0d62210c6b4011c8f"
+  subnet_id     = "subnet-0cd753ea81c8eea4d"
 
   source_ami_filter {
     filters = {
