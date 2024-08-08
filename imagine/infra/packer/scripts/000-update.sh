@@ -20,14 +20,15 @@ check_root() {
 
 update_and_upgrade() {
     log "Updating package list and upgrading installed packages..."
-    sudo apt update && sudo apt upgrade -y
+    sudo apt-get update && sudo apt-get upgrade -y
     log "Removing unnecessary packages..."
-    sudo apt autoremove -y
+    sudo apt-get autoremove -y
 }
 
 install_common_utilities() {
     log "Installing common utilities..."
-    sudo apt install -y curl wget git vim htop ufw
+    sudo apt-get install -q -y curl wget git vim htop ufw
+    sudo apt-get install -q -y unattended-upgrades build-essential software-properties-common libsqlite3-dev libssl-dev libffi-dev
 }
 
 setup_firewall() {
@@ -40,27 +41,31 @@ setup_firewall() {
 
 install_fail2ban() {
     log "Installing and configuring Fail2Ban..."
-    sudo apt install -y fail2ban
+    sudo apt-get install -y fail2ban
     sudo systemctl enable fail2ban
     sudo systemctl start fail2ban
 }
 
 configure_time_sync() {
     log "Configuring time synchronization..."
-    sudo apt install -y chrony
+    sudo apt-get install -y chrony
     sudo systemctl enable chrony
     sudo systemctl start chrony
 }
 
 create_user() {
     local username="$1"
+    local password="$2"
     log "Creating user $username..."
-    sudo adduser --gecos "" "$username"
+    sudo adduser --gecos "" --disabled-password "$username"
+    echo "$username:$password" | sudo chpasswd
     sudo usermod -aG sudo "$username"
-    log "User $username created and added to sudo group."
+    log "User $username created, added to sudo group, and password set."
 }
 
 # Main Script Execution
+export DEBIAN_FRONTEND=noninteractive
+
 check_root
 update_and_upgrade
 install_common_utilities
@@ -68,6 +73,6 @@ install_common_utilities
 # install_fail2ban
 configure_time_sync
 
-create_user "imagine"
+create_user "imagine" "default_password"
 
 log "Initial server setup completed successfully."
