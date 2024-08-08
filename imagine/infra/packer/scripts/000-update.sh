@@ -31,6 +31,20 @@ install_common_utilities() {
     sudo apt-get install -q -y unattended-upgrades build-essential software-properties-common libsqlite3-dev libssl-dev libffi-dev
 }
 
+configure_unattended_upgrades() {
+    log "Configuring unattended upgrades..."
+    sudo dpkg-reconfigure -plow unattended-upgrades
+    cat <<EOF | sudo tee /etc/apt/apt.conf.d/20auto-upgrades
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Download-Upgradeable-Packages "1";
+APT::Periodic::AutocleanInterval "7";
+APT::Periodic::Unattended-Upgrade "1";
+EOF
+    sudo systemctl enable unattended-upgrades
+    sudo systemctl start unattended-upgrades
+    log "Unattended upgrades configured and enabled."
+}
+
 setup_firewall() {
     log "Setting up UFW firewall..."
     sudo ufw default deny incoming
@@ -69,6 +83,7 @@ export DEBIAN_FRONTEND=noninteractive
 check_root
 update_and_upgrade
 install_common_utilities
+configure_unattended_upgrades
 # setup_firewall
 # install_fail2ban
 configure_time_sync
