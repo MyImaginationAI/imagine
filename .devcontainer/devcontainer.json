@@ -2,8 +2,11 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
 	"name": "Imagine",
-	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	"image": "mcr.microsoft.com/devcontainers/python:3.11-bookworm",
 	"features": {
+		"ghcr.io/devcontainers/features/node:1": {
+      		"version": "latest"
+		},
 		"ghcr.io/devcontainers/features/aws-cli:1": {},
 		"ghcr.io/devcontainers/features/terraform:1": {},
 		"ghcr.io/devcontainers-contrib/features/terraform-docs:1": {},
@@ -16,17 +19,17 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"eamodio.gitlens",
-				"donjayamanne.githistory",
-				"hashicorp.terraform",
-				"usernamehw.errorlens",
 				"AndrewButson.vscode-openai",
-				"ms-python.vscode-pylance",
-				"ms-python.python",
-				"ms-python.debugpy",
-				"GitHub.vscode-pull-request-github",
+				"Continue.continue",
+				"donjayamanne.githistory",
 				"GitHub.github-vscode-theme",
-				"PKief.material-icon-theme"
+				"GitHub.vscode-pull-request-github",
+				"hashicorp.terraform",
+				"ms-python.debugpy",
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"PKief.material-icon-theme",
+				"usernamehw.errorlens"
 			]
 		}
 	}
