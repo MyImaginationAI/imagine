@@ -25,6 +25,9 @@ source "amazon-ebs" "ubuntu" {
     owners      = ["099720109477"]
   }
   ssh_username = "ubuntu"
+  # comment the line below when ready to bake the image
+  skip_create_ami = true
+
 }
 
 build {
@@ -40,6 +43,16 @@ build {
      
   provisioner "shell" {
     script = "scripts/001-install-python.sh"
+    execute_command = "echo 'packer' | sudo -S -E bash '{{ .Path }}'"
+  }
+
+  provisioner "shell" {
+    script = "scripts/002-install-nodejs.sh"
+    execute_command = "echo 'packer' | sudo -S -E bash '{{ .Path }}'"
+  }
+
+  provisioner "shell" {
+    script = "scripts/003-install-open-webui.sh"
     execute_command = "echo 'packer' | sudo -S -E bash '{{ .Path }}'"
   }
   
