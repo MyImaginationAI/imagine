@@ -38,6 +38,9 @@ install_nvm
 log "Reloading .bashrc to apply NVM changes..."
 source ~/.bashrc
 
+# Explicitly set the terminal type to avoid tput errors
+export TERM=xterm
+
 install_latest_node
 
 log "NVM and Node.js setup completed successfully."
