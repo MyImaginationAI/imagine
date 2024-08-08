@@ -3,7 +3,7 @@
 # Phony targets
 .PHONY: imagine/infra/packer/init
 imagine/infra/packer/init:
-	@cd $(IMAGINE_INFRA_PACKER_DIR) && ls -ltha && packer init .
+	@cd $(IMAGINE_INFRA_PACKER_DIR) && packer init .
 
 .PHONY: imagine/infra/packer/build
 imagine/infra/packer/build:
